@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>icode-security</artifactId>
+        <groupId>com.icode.security</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../icode-security/pom.xml</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.icode.security.cas</groupId>
+    <artifactId>icode-security-cas</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.icode.security</groupId>
+            <artifactId>icode-security-browser</artifactId>
+            <version>${icode.security.version}</version>
+        </dependency>
+
+
+        <!-- 热部署组件 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+            <scope>true</scope>
+        </dependency>
+
+
+
+    </dependencies>
+
+    <!--多环境-->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <activatedProperties>dev</activatedProperties>
+            </properties>
+            <activation><!--默认开发环境-->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>qa</id>
+            <properties><!--QA环境-->
+                <activatedProperties>qa</activatedProperties>
+            </properties>
+        </profile>
+        <profile>
+            <id>pre</id>
+            <properties><!--预发布环境-->
+                <activatedProperties>pre</activatedProperties>
+            </properties>
+        </profile>
+        <profile>
+            <id>pro</id>
+            <properties><!--生产环境-->
+                <activatedProperties>pro</activatedProperties>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork><!-- fork:如果没有该配置，这个devtools不会起作用，即应用不会restart -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>
