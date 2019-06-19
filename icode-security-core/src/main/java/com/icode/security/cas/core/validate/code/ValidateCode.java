@@ -1,5 +1,6 @@
 package com.icode.security.cas.core.validate.code;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
  * Mail: summerpunch@163.com<br>
  * Date: 2019/6/15 17:07<br>
  */
-public class ValidateCode {
+public class ValidateCode implements Serializable {
 
     /**
      * 验证码随机数

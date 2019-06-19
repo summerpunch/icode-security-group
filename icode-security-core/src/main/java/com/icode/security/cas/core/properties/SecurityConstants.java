@@ -14,6 +14,7 @@ public interface SecurityConstants {
 	 * 默认的用户名密码登录请求处理url
 	 */
 	public static final String DEFAULT_LOGIN_PROCESSING_URL_FORM = "/authentication/form";
+
 	/**
 	 * 默认的手机验证码登录请求处理url
 	 */
@@ -21,7 +22,7 @@ public interface SecurityConstants {
 	/**
 	 * 默认登录页面
 	 */
-	public static final String DEFAULT_LOGIN_PAGE_URL = "/imooc-signIn.html";
+	public static final String DEFAULT_LOGIN_PAGE_URL = "/icode-signIn.html";
 	/**
 	 * 验证图片验证码时，http请求中默认的携带图片验证码信息的参数的名称
 	 */
@@ -38,5 +39,16 @@ public interface SecurityConstants {
 	 * session失效默认的跳转地址
 	 */
 	public static final String DEFAULT_SESSION_INVALID_URL = "/session/invalid";
-
+	/**
+	 * 获取第三方用户信息的url
+	 */
+	String DEFAULT_SOCIAL_USER_INFO_URL = "/social/user";
+	/**
+	 * 默认的手机验证码登录请求处理url
+	 */
+	String DEFAULT_SIGN_IN_PROCESSING_URL_MOBILE = "/authentication/mobile";
+	/**
+	 * 默认的OPENID登录请求处理url
+	 */
+	String DEFAULT_SIGN_IN_PROCESSING_URL_OPENID = "/authentication/openid";
 }

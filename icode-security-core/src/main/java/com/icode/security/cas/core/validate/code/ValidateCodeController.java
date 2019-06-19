@@ -24,7 +24,9 @@ public class ValidateCodeController {
     private ValidateCodeProcessorHolder validateCodeProcessorHolder;
 
     /**
-     * 创建验证码，根据验证码类型不同，调用不同的 {@link ValidateCodeProcessor}接口实现
+     * 创建验证码，根据验证码类型不同，
+     * 调用不同的 {@link ValidateCodeProcessor}接口实现
+     * 模板方法模式实现
      */
     @GetMapping(SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/{type}")
     public void createCode(HttpServletRequest request, HttpServletResponse response, @PathVariable String type)

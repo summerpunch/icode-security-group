@@ -12,7 +12,11 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Title: 接口逻辑可配置<br>
- * Description: <br>
+ * Description:
+ *
+ * 可用户自定义配置实现覆盖默认
+ *
+ * <br>
  * Author: XiaChong<br>
  * Mail: summerpunch@163.com<br>
  * Date: 2019/6/15 18:21<br>
@@ -41,13 +45,31 @@ public class ValidateCodeBeanConfig {
      * Return:
      */
     @Bean
-    @ConditionalOnMissingBean(name = "imageValidateCodeGenerator")
+    //@ConditionalOnMissingBean(name = "imageValidateCodeGenerator")
+    @ConditionalOnMissingBean(ValidateCodeGenerator.class)
     public ValidateCodeGenerator imageValidateCodeGenerator() {
         ImageCodeGenerator codeGenerator = new ImageCodeGenerator();
         codeGenerator.setSecurityProperties(securityProperties);
         return codeGenerator;
     }
 
+    /**
+     * Title: 根据用户配置动态实例化实现逻辑<br>
+     * Description:
+     * <p>
+     * 如果其余依赖项目没有另外扩展短信验证码逻辑
+     * <p>
+     * smsCodeSender
+     * <p>
+     * 则会调用默认短信验证码逻辑
+     *
+     * <br>
+     * Author: XiaChong<br>
+     * Mail: summerpunch@163.com<br>
+     * Date: 2019/6/15 18:28<br>
+     * Param: <br>
+     * Return:
+     */
     @Bean
     @ConditionalOnMissingBean(SmsCodeSender.class)
     public SmsCodeSender smsCodeSender() {

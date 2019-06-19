@@ -54,7 +54,8 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
      * Date: 2019/6/15 18:18<br>
      */
     private void save(ServletWebRequest request, C validateCode) {
-        sessionStrategy.setAttribute(request, getSessionKey(request), validateCode);
+        ValidateCode code = new ValidateCode(validateCode.getCode(), validateCode.getExpireTime());
+        sessionStrategy.setAttribute(request, getSessionKey(request), code);
     }
 
     /**
@@ -89,6 +90,13 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
         return ValidateCodeType.valueOf(type.toUpperCase());
     }
 
+    /**
+     * Title: 校验验证码<br>
+     * Description: <br>
+     * Author: XiaChong<br>
+     * Mail: summerpunch@163.com<br>
+     * Date: 2019/6/17 14:51<br>
+     */
     @Override
     public void validate(ServletWebRequest request) {
 
